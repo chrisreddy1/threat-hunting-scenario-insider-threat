@@ -35,6 +35,10 @@ DeviceFileEvents
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256
 | order by Timestamp asc
 ```
+
+<img width="462" alt="query1" src="https://github.com/user-attachments/assets/2d95b597-5633-428f-8e42-3becd117914f" />
+
+
 #### **Findings:**
 - File SHA256 hash: `ec727a15bf51e027b9a1bbf097cfa9d57e46aa159bfa37f68dca5e3c5df5af3d`
 - While this suggests file interaction, it's insufficient to confirm data exfiltration. He may have used another device or account.
@@ -51,6 +55,10 @@ DeviceFileEvents
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessAccountDomain, InitiatingProcessAccountName
 | order by Timestamp asc
 ```
+
+<img width="548" alt="query2" src="https://github.com/user-attachments/assets/71555a90-738a-4611-b61f-6db572f5c97d" />
+
+
 #### **Findings:**
 - The **'lobbyuser'** account on domain **'lobby-fl2-ae5fc'** accessed the same file.
 - The same file names appeared on both Bryce's and the shared workstation:
@@ -70,6 +78,9 @@ DeviceFileEvents
 | project Timestamp, DeviceName, FileName, InitiatingProcessFileName, InitiatingProcessCommandLine
 | order by Timestamp asc
 ```
+
+<img width="494" alt="query4" src="https://github.com/user-attachments/assets/bc7e1610-8e09-4bbd-98d5-79f842bfd7ba" />
+
 #### **Findings:**
 - **Steghide.exe** was executed on the shared workstation, indicating possible data concealment.
 - Further analysis was needed to determine its purpose.
@@ -85,6 +96,9 @@ DeviceProcessEvents
 | where ProcessCommandLine contains "steghide.exe"
 | project Timestamp, DeviceName, ActionType, FileName, ProcessCommandLine
 ```
+
+<img width="620" alt="query5" src="https://github.com/user-attachments/assets/8c903b6e-aae3-4c9d-aa92-b62517027448" />
+
 #### **Findings:**
 - Data was embedded into **bitmap images** found on Bryce’s machine.
 - Retrieved images from Bryce’s personal folder:
@@ -102,6 +116,9 @@ DeviceFileEvents
 | where InitiatingProcessCommandLine contains ('suzie-and-bob.bmp')
 | project Timestamp, DeviceName, ActionType, FileName, InitiatingProcessCommandLine, InitiatingProcessFolderPath, InitiatingProcessFileName, InitiatingProcessSHA256
 ```
+
+<img width="621" alt="query6" src="https://github.com/user-attachments/assets/a2a1b64d-3c27-4d43-ada1-3b892495926a" />
+
 #### **Findings:**
 - The images were archived into a **zip file**: `secure_files.zip`.
 - **SHA-256 of the 7zip process**: `707f415d7d581edd9bce99a0429ad4629d3be0316c329e8b9ebd576f7ab50b71`
@@ -120,6 +137,9 @@ DeviceFileEvents
 | where PreviousFileName == 'secure_files.zip'
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath, PreviousFileName
 ```
+
+<img width="440" alt="query8" src="https://github.com/user-attachments/assets/6e3d4c6c-dee2-4ed8-978d-303a06d34773" />
+
 #### **Findings:**
 - The zip file was renamed to **'marketing_misc.zip'**, likely to disguise its contents.
 - However, we still needed conclusive proof that Bryce was behind this.
@@ -134,6 +154,9 @@ Investigated whether **'marketing_misc.zip'** was moved to a location tied direc
 DeviceFileEvents
 | where FileName == 'marketing_misc.zip'
 ```
+
+<img width="441" alt="query9" src="https://github.com/user-attachments/assets/9c7dbbce-cca0-440b-8daf-3a30f81f7805" />
+
 #### **Findings:**
 - The zip file was found in **Bryce’s personal file directory**.
 - This provides **conclusive evidence** that Bryce attempted to steal corporate data.
