@@ -61,7 +61,7 @@ DeviceFileEvents
 
 #### **Findings:**
 - The **'lobbyuser'** account on domain **'lobby-fl2-ae5fc'** accessed the same file.
-- The same file names appeared on both Bryce's and the shared workstation:
+- The same files appeared on both Bryce's and the shared workstation:
   - `Q1-2025-ResearchAndDevelopment.pdf`
   - `Q2-2025-HumanTrials.pdf`
   - `Q3-2025-AnimalTrials-SiberianTigers.pdf`
