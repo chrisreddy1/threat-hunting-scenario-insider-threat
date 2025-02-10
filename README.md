@@ -158,7 +158,7 @@ DeviceFileEvents
 <img width="441" alt="query9" src="https://github.com/user-attachments/assets/9c7dbbce-cca0-440b-8daf-3a30f81f7805" />
 
 #### **Findings:**
-- The zip file was found in **Bryce’s personal file directory**.
+- The zip file was found in **Bryce’s personal file directory** at `2025-02-05T08:57:32.2582822Z`.
 - This provides **conclusive evidence** that Bryce attempted to steal corporate data.
 
 ---
