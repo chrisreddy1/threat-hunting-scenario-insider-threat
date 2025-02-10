@@ -1,4 +1,4 @@
-# Threat Hunt Report: Insider Threat
+# Threat Hunt Report: Insider Data Exfiltration
 
 ## Platforms and Technologies Used
 - **Operating System**: Windows 10 Virtual Machines (Microsoft Azure)
